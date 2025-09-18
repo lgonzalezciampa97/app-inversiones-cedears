@@ -2,7 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Simulador de Inversión</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CEDEARS Simulator</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,8 +12,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh; /* centra vertical y horizontal */
+      min-height: 100vh;
       margin: 0;
+      padding: 1rem;
     }
 
     .container {
@@ -20,14 +22,17 @@
       padding: 2rem;
       border-radius: 16px;
       box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-      width: 400px;
+      width: 100%;
+      max-width: 400px;
       text-align: center;
       border: 2px solid #d17fe6;
+      box-sizing: border-box;
     }
 
     h1 {
       margin-bottom: 1.5rem;
       color: #9b4dca;
+      font-size: 1.8rem;
     }
 
     label {
@@ -36,6 +41,7 @@
       font-weight: bold;
       color: #6c3483;
       text-align: left;
+      font-size: 1rem;
     }
 
     input {
@@ -47,6 +53,7 @@
       font-size: 1rem;
       outline: none;
       transition: border 0.2s ease, box-shadow 0.2s ease;
+      box-sizing: border-box;
     }
 
     input:focus {
@@ -62,7 +69,7 @@
       color: white;
       border: none;
       border-radius: 10px;
-      font-size: 1rem;
+      font-size: 1.1rem;
       cursor: pointer;
       transition: background 0.2s ease, transform 0.1s ease;
     }
@@ -78,6 +85,30 @@
       font-weight: bold;
       text-align: center;
       color: #7d3c98;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .container {
+        padding: 1.5rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      label, input {
+        font-size: 0.95rem;
+      }
+
+      button {
+        font-size: 1rem;
+        padding: 0.8rem;
+      }
+
+      .result {
+        font-size: 1.2rem;
+      }
     }
   </style>
 </head>
@@ -106,7 +137,7 @@
     function computeFinalValue(initValue, percentage, months, monthlyAddition) {
       if (months <= 0) return 0;
 
-      let a = 1.0 + (percentage / 100); // convertir de % real a decimal
+      let a = 1.0 + (percentage / 100);
 
       let aPowN = Math.pow(a, months);
       let aPowNMinus1 = Math.pow(a, months - 1);
